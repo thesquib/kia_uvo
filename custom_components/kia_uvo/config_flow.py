@@ -336,6 +336,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     description_placeholders={"authorize_url": self._nz_authorize_url},
                 )
 
+            self._pending_login_data[CONF_TOKEN] = self._vehicle_manager.token.to_dict()
             full_config = self._pending_login_data
             if self._is_reconfigure:
                 return self.async_update_reload_and_abort(
